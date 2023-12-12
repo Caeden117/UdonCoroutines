@@ -14,10 +14,10 @@ public abstract class BaseUdonCoroutineCallback : UdonSharpBehaviour
 	/// <summary>
 	/// Callback every frame an Udon Coroutine executes.
 	/// </summary>
-    public virtual void Tick() { }
+	public virtual void Tick() { }
 
 	/// <summary>
 	/// Callback when an Udon Coroutine is completed.
 	/// </summary>
-    public virtual void OnCompletion() { }
+	public virtual void OnCompletion() { }
 }

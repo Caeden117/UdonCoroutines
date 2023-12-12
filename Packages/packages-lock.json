@@ -4,7 +4,9 @@
       "version": "file:com.caeden117.udoncoroutines",
       "depth": 0,
       "source": "embedded",
-      "dependencies": {}
+      "dependencies": {
+        "com.vrchat.worlds": "3.4.0"
+      }
     },
     "com.unity.burst": {
       "version": "1.4.11",
