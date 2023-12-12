@@ -1,4 +1,5 @@
-﻿using UdonSharp;
+﻿using System;
+using UdonSharp;
 using UnityEngine;
 
 /// <summary>
@@ -17,33 +18,43 @@ public abstract class BaseUdonCoroutine : UdonSharpBehaviour
     public bool Running { get; private set; } = false;
 
     // Udon Coroutine callback component, can be null
-    [SerializeField] BaseUdonCoroutineCallback callback = null;
+    [SerializeField] protected BaseUdonCoroutineCallback callback = null;
     
     /// <summary>
     /// Starts this Udon Coroutine.
     /// </summary>
-    public void StartCoroutine(BaseUdonCoroutineCallback callback = null)
+    /// <param name="callback">Component to recieve events during this Coroutine (can be null).</param>
+    public void StartUdonCoroutine(BaseUdonCoroutineCallback callback = null)
     {
+        if (Running)
+        {
+            Debug.LogError("Cannot start an Udon Coroutine while the coroutine is already running!");
+            return;
+
+            // Guh.
+            //throw new InvalidOperationException("Cannot start a Udon Coroutine while the coroutine is already running!");
+        }
+        
         if (callback != null)
         {
             this.callback = callback;
         }
         
-        Reset();
+        Setup();
         Completed = false;
         Running = true;
         enabled = true;
 
         if (callback == null) return;
         
-        callback.Reset();
+        callback.Setup();
     }
     
     /// <summary>
     /// Resets the internal state of this Udon Coroutine.
     /// Called once when this Udon Coroutine is started.
     /// </summary>
-    protected virtual void Reset() { }
+    protected virtual void Setup() { }
     
     /// <summary>
     /// The internal ticking update for Udon Coroutines.

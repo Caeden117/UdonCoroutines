@@ -10,6 +10,6 @@ public sealed class RunCoroutineOnStart : UdonSharpBehaviour
     {
         if (coroutine == null) return;
 
-        coroutine.StartCoroutine();
+        coroutine.StartUdonCoroutine();
     }
 }

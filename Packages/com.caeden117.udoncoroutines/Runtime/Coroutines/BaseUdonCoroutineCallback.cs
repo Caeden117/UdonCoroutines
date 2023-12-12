@@ -9,7 +9,7 @@ public abstract class BaseUdonCoroutineCallback : UdonSharpBehaviour
 	/// <summary>
 	/// Callback when a Udon Coroutine has reset its internal state.
 	/// </summary>
-	public virtual void Reset() { }
+	public virtual void Setup() { }
 
 	/// <summary>
 	/// Callback every frame an Udon Coroutine executes.

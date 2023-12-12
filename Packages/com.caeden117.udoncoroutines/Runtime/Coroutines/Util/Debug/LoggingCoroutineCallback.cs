@@ -12,11 +12,11 @@ public sealed class LoggingCoroutineCallback : BaseUdonCoroutineCallback
 
     private void OnEnable() => objectName = $"Coroutine Callback ({gameObject.name})";
 
-    public override void Reset()
+    public override void Setup()
     {
         if (!logReset) return;
         
-        Debug.Log(objectName + " | Reset()");
+        Debug.Log(objectName + " | Setup()");
     }
 
     public override void Tick()
