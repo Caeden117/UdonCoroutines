@@ -1,14 +1,25 @@
 # Udon Coroutines
 
-A collection of Udon scripts bringing basic coroutine-like functionality to Udon.
+Udon Coroutines implements a basic Coroutine system with many basic Coroutines and utility scripts.
 
-## Why?
+# Coroutine List
 
-VRChat Udon is a very restrictive sandbox, and there currently exists no tool to mimic the functionality of Unity's Coroutines.
+## Animation
 
-Udon Coroutines, as the name implies, implements a basic Coroutine system with many basic Coroutines and utility scripts.
+### Transforms
 
-## Coroutine List
+Udon Coroutines bundles coroutine scripts affecting to the following Transform properties:
+
+- `AnimatePositionCoroutine` - `transform.position`
+- `AnimateEulerAnglesCoroutine` - `transform.eulerAngles`
+
+### Unity
+
+Udon Coroutines bundles coroutine scripts animating Unity structures for general non-Transform use cases. 
+
+- `AnimateVector3Coroutine`
+
+## Utility
 
 ### `WaitForAllCoroutine`
 
@@ -48,6 +59,28 @@ public class ExampleUdonCoroutine : BaseUdonCoroutine
     
     // Internal callback when this Udon Coroutine is complete.
     // Should be used to clean up resources used during the execution of this coroutine.
+    protected override void OnCompletion() { }
+}
+```
+
+### Animated Coroutines
+
+Animated Udon Coroutines have another base class, `AnimatedUdonCoroutine`, which simplifies the process of creating any Udon Coroutine responsible for scripted animation.
+
+If you are interested in writing a custom Animated Udon Coroutine, inherit `AnimatedUdonCoroutine` instead.
+
+```csharp
+// AnimatedUdonCoroutine inherits BaseUdonCoroutine.
+public class ExampleAnimatedUdonCoroutine : AnimatedUdonCoroutine
+{
+    // Setup() remains the same from BaseUdonCoroutine.
+    protected override void Setup() { }
+    
+    // Executes every frame, where "progress" is normalized from 0-1.
+    // Use this method to update your animation coroutine.
+    protected override void UpdateAnimation(float progress) { }
+    
+    // OnCompletion() remains the same from BaseUdonCoroutine.
     protected override void OnCompletion() { }
 }
 ```
