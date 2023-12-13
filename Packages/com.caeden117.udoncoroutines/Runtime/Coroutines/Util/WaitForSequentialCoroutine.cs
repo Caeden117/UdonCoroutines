@@ -6,7 +6,10 @@ using UnityEngine;
 /// </summary>
 public sealed class WaitForSequentialCoroutine : BaseUdonCoroutine
 {
-    [SerializeField] private BaseUdonCoroutine[] coroutines;
+    [Header("Wait For Sequential Coroutine")]
+    [Tooltip("Inner coroutines to execute sequentially (one after another).")]
+    [SerializeField]
+    private BaseUdonCoroutine[] coroutines;
 
     private int coroutineIdx = 0;
     

@@ -6,7 +6,10 @@ using UnityEngine;
 /// </summary>
 public sealed class WaitForSecondsCoroutine : BaseUdonCoroutine
 {
-    [SerializeField] private float seconds = 1f;
+    [Header("Wait For Seconds Coroutine")]
+    [Tooltip("Length of time to wait, in seconds.")]
+    [SerializeField]
+    private float seconds = 1f;
 
     private float destinationTime;
     

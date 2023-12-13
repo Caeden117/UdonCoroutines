@@ -7,6 +7,12 @@ using UnityEngine;
 /// </summary>
 public abstract class BaseUdonCoroutine : UdonSharpBehaviour
 {
+    // Udon Coroutine callback component, can be null
+    [Header("Base Udon Coroutine")]
+    [Tooltip("Optional field, specifying a Callback component which will recieve events from this Coroutine.")]
+    [SerializeField]
+    protected BaseUdonCoroutineCallback callback = null;
+    
     /// <summary>
     /// The completion status of this Udon Coroutine.
     /// </summary>
@@ -16,9 +22,6 @@ public abstract class BaseUdonCoroutine : UdonSharpBehaviour
     /// The running state of this Udon Coroutine.
     /// </summary>
     public bool Running { get; private set; } = false;
-
-    // Udon Coroutine callback component, can be null
-    [SerializeField] protected BaseUdonCoroutineCallback callback = null;
     
     /// <summary>
     /// Starts this Udon Coroutine.
@@ -47,7 +50,7 @@ public abstract class BaseUdonCoroutine : UdonSharpBehaviour
 
         if (callback == null) return;
         
-        callback.Setup();
+        callback.Setup(this);
     }
     
     /// <summary>
@@ -74,7 +77,7 @@ public abstract class BaseUdonCoroutine : UdonSharpBehaviour
     protected virtual void OnCompletion() { }
 
     // Because Udon Coroutines rely heavily on Update, automatically disable Update events on start.
-    private void Awake() => enabled = false;
+    private void Start() => enabled = false;
     
     private void Update()
     {
@@ -84,7 +87,7 @@ public abstract class BaseUdonCoroutine : UdonSharpBehaviour
 
         if (callback != null)
         {
-            callback.Tick();
+            callback.Tick(this);
         }
 
         if (!completion) return;
@@ -97,6 +100,6 @@ public abstract class BaseUdonCoroutine : UdonSharpBehaviour
 
         if (callback == null) return;
 
-        callback.OnCompletion();
+        callback.OnCompletion(this);
     }
 }

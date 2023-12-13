@@ -9,15 +9,18 @@ public abstract class BaseUdonCoroutineCallback : UdonSharpBehaviour
 	/// <summary>
 	/// Callback when a Udon Coroutine has reset its internal state.
 	/// </summary>
-	public virtual void Setup() { }
+	/// <param name="sender">Udon Coroutine triggering this callback.</param>
+	public virtual void Setup(BaseUdonCoroutine sender) { }
 
 	/// <summary>
 	/// Callback every frame an Udon Coroutine executes.
 	/// </summary>
-	public virtual void Tick() { }
+	/// <param name="sender">Udon Coroutine triggering this callback.</param>
+	public virtual void Tick(BaseUdonCoroutine sender) { }
 
 	/// <summary>
 	/// Callback when an Udon Coroutine is completed.
 	/// </summary>
-	public virtual void OnCompletion() { }
+	/// <param name="sender">Udon Coroutine triggering this callback.</param>
+	public virtual void OnCompletion(BaseUdonCoroutine sender) { }
 }

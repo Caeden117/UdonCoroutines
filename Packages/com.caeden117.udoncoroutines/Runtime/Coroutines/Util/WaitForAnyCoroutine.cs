@@ -6,7 +6,10 @@ using UnityEngine;
 /// </summary>
 public sealed class WaitForAnyCoroutine : BaseUdonCoroutine
 {
-    [SerializeField] private BaseUdonCoroutine[] coroutines;
+    [Header("Wait For Any Coroutine")]
+    [Tooltip("Inner coroutines to execute in parallel.")]
+    [SerializeField]
+    private BaseUdonCoroutine[] coroutines;
     
     /// <summary>
     /// Starts this Coroutine with an overridden list of coroutines to execute in parallel.
