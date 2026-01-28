@@ -43,6 +43,7 @@ public class AnimateEulerAnglesCoroutine : AnimatedUdonCoroutine
 
     protected override void Setup()
     {
+        base.Setup();
         startRotation = Quaternion.Euler(start);
         endRotation = Quaternion.Euler(end);
     }
