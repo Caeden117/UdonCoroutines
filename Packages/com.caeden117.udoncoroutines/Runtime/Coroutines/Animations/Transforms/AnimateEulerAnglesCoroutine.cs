@@ -73,13 +73,13 @@ public class AnimateEulerAnglesCoroutine : AnimatedUdonCoroutine
     
 
     /// <summary>
-    /// Override for the base callback allowing you to not have to call a start and end. that calls the base function
+    /// A mirror to the base callback allowing you to not have to add a start and end parameter. that calls the base function
     /// This allows for more flexible usage
     /// </summary>
     /// <author>DubstepDragon</author>
     /// <param name="duration"></param>
     /// <param name="endCallback"></param>
-    public void StartUdonCoroutine(float duration = 1f,
+    public void StartUdonCoroutineRaw(float duration = 1f,
         BaseUdonCoroutineCallback endCallback = null)
     {
         StartUdonCoroutine(start, end, duration, endCallback);
